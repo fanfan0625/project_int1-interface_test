@@ -1,11 +1,11 @@
-#!/usr/bin/env python3.6.1  
+#!/usr/bin/env python3.6.4  
 # encoding: utf-8  
-# @Time    : 2018/6/24 16:21  
-# @Author  : fanfan 
+# @Time    : 2018/6/24 16:20  
+# @Author  : penghaibo  
 # @contact: xxxx@qq.com  
 # @Site    :   
-# @File    : run.py  
-# @Software: PyCharm Community Edition
+# @File    : run.py.py  
+# @Software: PyCharm
 
 import unittest
 from test_suites import ranzhi_suite
@@ -18,7 +18,6 @@ if __name__ == "__main__":
     suite = weather_suite.get_suite()
     current_time = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
     report_name = "test_report_{}.html".format(current_time)
-#run
     with open('reports/{}'.format(report_name), 'wb') as report:
         runner = HTMLTestRunner(
             stream=report,

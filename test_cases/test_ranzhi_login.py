@@ -1,32 +1,32 @@
-#!/usr/bin/env python3.6.1  
+#!/usr/bin/env python3.6.4  
 # encoding: utf-8  
-# @Time    : 2018/6/24 14:38  
-# @Author  : fanfan 
+# @Time    : 2018/6/24 16:16  
+# @Author  : penghaibo  
 # @contact: xxxx@qq.com  
 # @Site    :   
 # @File    : test_ranzhi_login.py  
-# @Software: PyCharm Community Edition
+# @Software: PyCharm
 
 import requests
-import hashlib #md5
-import re #正则表达式
+import hashlib
+import re
 import unittest
 
-class testRanzhilogin(unittest.TestCase):
+class testRanzhiLogin(unittest.TestCase):
     def setUp(self):
-        self.url = 'http://localhost/ranzhi/www/sys/user-login.html'
-        self.username = 'admin'
-        self.password = '1234'
+        self.url = "http://127.0.0.1/ranzhi/www/sys/user-login-L3JhbnpoaS93d3cvc3lzLw==.html"
+        self.username = "admin"
+        self.password = "1234"
         pass
 
     def tearDown(self):
         pass
 
     def test_ranzhi_login(self):
-        #1.请求登录页
+        #1. 请求登录页
         res = requests.get(self.url)
-        #2.通过正则表达式获取v.random的值
-		pattern = "(?=v.random = \").*(?=;<)"
+        #2. 通过正则表达式获取v.random的值
+        pattern = "(?=v.random = \").*(?=;<)"
         result = re.search(pattern, res.text).group()
         random_str = result.replace('v.random = "', '').replace('"', '')
         #3. 对password进行加密
@@ -45,5 +45,5 @@ class testRanzhilogin(unittest.TestCase):
         self.assertIn('<html>', res.text)
         pass
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
