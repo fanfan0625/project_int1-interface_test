@@ -7,15 +7,21 @@
 # @File    : run.py  
 # @Software: PyCharm Community Edition
 
-from test_suites import historyweather_suite
 import unittest
-from lib import HTMLTestRunner
+from test_suites import ranzhi_suite
+from test_suites import weather_suite
+from lib.HTMLTestRunner import HTMLTestRunner
 import time
 
-if __name__ == "__main":
-    suite = historyweather_suite.get_suite()
-    now_time = time.strftime("%Y_%m_%d_%H_%M_%S")
-    report_name = "test_report_{}.html".format(now_time)
-    with open ('reports/{}'.format(report_name), 'wb') as fp:
-        runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u"自动化测试报告", description=u"获取天气预报自动化测试")
+if __name__ == "__main__":
+    #suite = ranzhi_suite.get_suite()
+    suite = weather_suite.get_suite()
+    current_time = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
+    report_name = "test_report_{}.html".format(current_time)
+    with open('reports/{}'.format(report_name), 'wb') as report:
+        runner = HTMLTestRunner(
+            stream=report,
+            title="test_HistoryWeather",
+            description="测试历史天气"
+        )
         runner.run(suite)
